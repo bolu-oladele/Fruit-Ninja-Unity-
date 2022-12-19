@@ -7,6 +7,9 @@ public class Spawn_items : MonoBehaviour
     public float spawnTime=1; //Spawn Time
     public GameObject apple; //Apple prefab
     public GameObject bomb; //Bomb prefab
+    public GameObject banana;
+    public GameObject plum;
+    public GameObject watermelon;
     public float upForce = 750; //Up force
     public float leftRightForce = 200; //Left and right force
     public float maxX = -7; //Max x spawn position
@@ -23,11 +26,19 @@ public class Spawn_items : MonoBehaviour
         //Spawn prefab is apple
         GameObject prefab = apple;
         //If random is over 30
-        if (Random.Range(0,100) < 30)
-        {
-        //Spawn prefab is bomb
-        prefab = bomb;
+        int randint = Random.Range(0,100);
+        if (randint < 20) {
+            //Spawn prefab is bomb
+            prefab = bomb;
+        } else if (randint < 40) {
+            prefab = plum;
+        } else if (randint < 60) {
+            prefab = banana;
+        } else if (randint < 80) {
+            prefab = watermelon;
         }
+
+
         //Spawn prefab add randomc position
         GameObject go = Instantiate(prefab,new Vector3(Random.Range(minX,maxX + 1),transform.position.y, 0f),Quaternion.Euler(0,0, Random.Range (-90F, 90F))) as GameObject;
         //If x position is over 0 go left
